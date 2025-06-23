@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOSET - EXCLUSIVE ACCESS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .hero-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a0a 100%);
+            z-index: -2;
+        }
+
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .fabric-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.01) 2px, rgba(255,255,255,0.01) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.005) 2px, rgba(255,255,255,0.005) 4px);
+            z-index: -1;
+            animation: textureMove 20s linear infinite;
+        }
+
+        @keyframes textureMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(10px) translateY(10px); }
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .left-section {
+            position: relative;
+        }
+
+        .brand-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #ff1493;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .brand-mark::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, #ff1493, transparent);
+        }
+
+        .main-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #ff1493 50%, #ffd700 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .fashion-subtitle {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .fashion-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .keyword {
+            padding: 8px 16px;
+            background: rgba(255, 20, 147, 0.1);
+            border: 1px solid rgba(255, 20, 147, 0.3);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: #ff1493;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .keyword:hover {
+            background: rgba(255, 20, 147, 0.2);
+            border-color: #ff1493;
+            transform: translateY(-2px);
+        }
+
+        .right-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .closet-visual {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 20, 147, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .hanger-rail {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(90deg, #333, #666, #333);
+            border-radius: 2px;
+        }
+
+        .clothing-item {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff1493, #ffd700);
+            border-radius: 8px 8px 0 0;
+            opacity: 0;
+            animation: fadeInHang 2s ease-in-out infinite;
+        }
+
+        .clothing-item:nth-child(2) {
+            left: 20%;
+            top: 80px;
+            animation-delay: 0s;
+        }
+
+        .clothing-item:nth-child(3) {
+            left: 40%;
+            top: 80px;
+            background: linear-gradient(135deg, #00ffff, #ff1493);
+            animation-delay: 0.7s;
+        }
+
+        .clothing-item:nth-child(4) {
+            left: 60%;
+            top: 80px;
+            background: linear-gradient(135deg, #ffd700, #ff4500);
+            animation-delay: 1.4s;
+        }
+
+        @keyframes fadeInHang {
+            0%, 70% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 0.8; transform: translateY(0); }
+        }
+
+        .ai-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ff1493;
+            border-radius: 50%;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(500px) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        .waitlist-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waitlist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff1493, transparent);
+            animation: topBorder 3s ease-in-out infinite;
+        }
+
+        @keyframes topBorder {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .waitlist-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: #ff1493;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+            }
+            50% { 
+                transform: scale(1.2);
+                box-shadow: 0 0 0 6px rgba(255, 20, 147, 0);
+            }
+        }
+
+        .counter-number {
+            color: #ff1493;
+            font-weight: 700;
+            margin: 0 5px;
+            font-size: 1rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff1493, #ffd700);
+            border: none;
+            border-radius: 50px;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.3);
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .fashion-stats {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff1493;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .fashion-stats {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                justify-content: center;
+                margin-top: 30px;
+            }
+            
+            .closet-visual {
+                height: 300px;
+            }
+            
+            .waitlist-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-background"></div>
+    <div class="fabric-texture"></div>
+    
+    <div class="container">
+        <div class="main-content">
+            <div class="left-section">
+                <div class="brand-mark">Digital Closet</div>
+                
+                <h1 class="main-headline">
+                    Your Style,<br>
+                    Curated by AI
+                </h1>
+                
+                <p class="fashion-subtitle">
+                    The most sophisticated wardrobe management platform. 
+                    Join fashion-forward individuals revolutionizing personal style.
+                </p>
+                
+                <div class="fashion-keywords">
+                    <span class="keyword">AI Styling</span>
+                    <span class="keyword">Smart Wardrobe</span>
+                    <span class="keyword">Trend Analysis</span>
+                    <span class="keyword">Personal Curation</span>
+                </div>
+                
+                <div class="fashion-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalMembers">2,847</span>
+                        <span class="stat-label">Members</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">AI Styling</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Looks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="closet-visual">
+                    <div class="hanger-rail"></div>
+                    <div class="clothing-item"></div>
+                    <div class="clothing-item"></div>
+                    <div class="clothing-item"></div>
+                    <div class="ai-particles" id="particleContainer"></div>
+                </div>
+                
+                <div class="waitlist-card">
+                    <h2 class="card-title">Join the Waitlist</h2>
+                    
+                    <div class="waitlist-counter">
+                        <div class="live-indicator"></div>
+                        <span>
+                            <span class="counter-number" id="waitlistCount">2,847</span>
+                            style enthusiasts waiting
+                        </span>
+                    </div>
+                    
+                    <!-- Google Forms Integration -->
+                    <a href="https://docs.google.com/forms/d/1pmvea93DEsto7ZGeOJDng7HNjFlubzSsmc-r5RUu9eA/viewform" target="_blank" class="submit-button" id="joinButton">
+                        Secure Early Access
+                    </a>
+                    
+                    <p class="form-note">
+                        Opens secure Google Form in new tab.<br>
+                        Your email will be added to our waitlist.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Particle system
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('particleContainer').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        setInterval(createParticle, 800);
+
+        // Counter management
+        let memberCount = 2847;
+        const totalMembersEl = document.getElementById('totalMembers');
+        const waitlistCountEl = document.getElementById('waitlistCount');
+
+        function updateCounters() {
+            totalMembersEl.textContent = memberCount.toLocaleString();
+            waitlistCountEl.textContent = memberCount.toLocaleString();
+        }
+
+        // Simulate real-time growth
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                memberCount += Math.floor(Math.random() * 2) + 1;
+                updateCounters();
+                
+                // Subtle glow effect
+                [totalMembersEl, waitlistCountEl].forEach(el => {
+                    el.style.textShadow = '0 0 15px #ff1493';
+                    setTimeout(() => {
+                        el.style.textShadow = 'none';
+                    }, 500);
+                });
+            }
+        }, 8000);
+
+        // Initialize
+        updateCounters();
+    </script>
+</body>
+</html>

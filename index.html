@@ -458,26 +458,6 @@
             font-weight: 500;
         }
 
-        /* Debug Info */
-        .debug-info {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 12px;
-            max-width: 300px;
-            z-index: 9999;
-            display: none;
-        }
-
-        .debug-info.show {
-            display: block;
-        }
-
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .main-content {
@@ -559,13 +539,6 @@
 <body>
     <div class="hero-background"></div>
     <div class="fabric-texture"></div>
-    
-    <!-- Debug Info -->
-    <div class="debug-info" id="debugInfo">
-        <div>Status: Ready</div>
-        <div>Form URL: Configured</div>
-        <div>Last Action: None</div>
-    </div>
     
     <div class="container">
         <div class="main-content">
@@ -659,15 +632,6 @@
         const submitButton = document.getElementById('submitButton');
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
-        const debugInfo = document.getElementById('debugInfo');
-
-        // Debug functions
-        function updateDebug(status, action = null) {
-            const lines = debugInfo.querySelectorAll('div');
-            lines[0].textContent = `Status: ${status}`;
-            if (action) lines[2].textContent = `Last Action: ${action}`;
-            debugInfo.classList.add('show');
-        }
 
         // Email validation
         function isValidEmail(email) {
@@ -680,7 +644,6 @@
             errorMessage.textContent = message;
             errorMessage.classList.add('show');
             emailInput.classList.add('error');
-            updateDebug('Error', message);
             
             setTimeout(() => {
                 emailInput.classList.remove('error');
@@ -697,7 +660,6 @@
         function showSuccess() {
             form.style.display = 'none';
             successMessage.style.display = 'block';
-            updateDebug('Success', 'Email submitted successfully');
         }
 
         // Main form submission handler
@@ -708,7 +670,6 @@
             
             console.log('🚀 Form submitted! Email:', email);
             console.log('📡 Google Form URL:', GOOGLE_FORM_URL);
-            updateDebug('Submitting...', `Email: ${email}`);
             
             // Validate email
             if (!email) {
@@ -726,7 +687,6 @@
             // Show loading state
             submitButton.classList.add('loading');
             submitButton.disabled = true;
-            updateDebug('Loading...', 'Sending to Google Apps Script');
             
             try {
                 // Submit to Google Forms (much simpler!)
@@ -745,7 +705,6 @@
                 });
                 
                 console.log('📨 Submitted to Google Forms successfully!');
-                updateDebug('Success', 'Submitted to Google Forms');
                 
                 // Update counter (simulate increment since we can't get real count from Forms)
                 memberCount++;
@@ -760,7 +719,6 @@
                 
             } catch (error) {
                 console.error('❌ Submission error:', error);
-                updateDebug('Error', error.message);
                 showError('Something went wrong. Please try again.');
             } finally {
                 submitButton.classList.remove('loading');
@@ -938,7 +896,6 @@
         // Initialize animations
         setTimeout(() => {
             cardObserver.observe(waitlistCard);
-            updateDebug('Ready', 'Google Forms configured');
             
             // Stagger text animations
             const headline = document.querySelector('.main-headline');
@@ -968,11 +925,6 @@
             if (texture) {
                 texture.style.transform = `translate(${mouseX * -5}px, ${mouseY * -5}px)`;
             }
-        });
-
-        // Show debug info on double-click
-        document.addEventListener('dblclick', () => {
-            debugInfo.classList.toggle('show');
         });
     </script>
 </body>

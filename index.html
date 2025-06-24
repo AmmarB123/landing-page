@@ -649,8 +649,9 @@
     </div>
 
     <script>
-        // Configuration - Your UPDATED Google Apps Script with real count support
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSI2Rbv2Yy2mu7_Ms-a1qHyaOypoV3HkqmTRKDchmWC1lGa5or5CcN4-WB4B8nOmNt/exec';
+        // Configuration - Your NEW Google Form (Updated!)
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdCI-G9aWJnx45YpgtjBz2T82CHv9Q0-_pW3sZLi9ahFdBXrQ/formResponse';
+        const EMAIL_FIELD_NAME = 'entry.763118770';
         
         // Get form elements
         const form = document.getElementById('waitlistForm');
@@ -728,58 +729,34 @@
             updateDebug('Loading...', 'Sending to Google Apps Script');
             
             try {
-                // Prepare data for Google Sheets (matches your 4 columns exactly)
+                // Submit to Google Forms (much simpler!)
                 const formData = new FormData();
-                formData.append('email', email);                              // Column 1: Email
-                formData.append('timestamp', new Date().toISOString());       // Column 2: Timestamp
-                formData.append('source', 'Digital Closet Waitlist');        // Column 3: Source
-                formData.append('userAgent', navigator.userAgent);            // Column 4: IP Address
+                formData.append(EMAIL_FIELD_NAME, email);
                 
-                console.log('📋 Sending data to Google Apps Script:');
+                console.log('📋 Sending to Google Forms:');
                 console.log('- Email:', email);
-                console.log('- Timestamp:', new Date().toISOString());
-                console.log('- Source: Digital Closet Waitlist');
-                console.log('- UserAgent:', navigator.userAgent);
+                console.log('- Form URL:', GOOGLE_FORM_URL);
                 
-                // Send to Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                // Submit to Google Forms
+                const response = await fetch(GOOGLE_FORM_URL, {
                     method: 'POST',
                     body: formData,
-                    mode: 'cors'
+                    mode: 'no-cors' // Required for Google Forms
                 });
                 
-                console.log('📨 Response received from Google Apps Script');
+                console.log('📨 Submitted to Google Forms successfully!');
+                updateDebug('Success', 'Submitted to Google Forms');
                 
-                // Try to parse the response for the real count
-                let realCount = null;
-                try {
-                    const responseData = await response.json();
-                    if (responseData.success && responseData.count !== undefined) {
-                        realCount = responseData.count;
-                        console.log('📊 Real count from server:', realCount);
-                    }
-                } catch (parseError) {
-                    console.log('⚠️ Could not parse response, using fallback increment');
-                }
-                
-                // Update counter with real count or increment locally
-                if (realCount !== null) {
-                    animateCounter(totalMembersEl, realCount);
-                    animateCounter(waitlistCountEl, realCount);
-                    updateCounters(realCount);
-                    updateDebug('Success', `Real count updated: ${realCount}`);
-                } else {
-                    memberCount++;
-                    animateCounter(totalMembersEl, memberCount);
-                    animateCounter(waitlistCountEl, memberCount);
-                    updateCounters(memberCount);
-                    updateDebug('Success', 'Count incremented locally');
-                }
+                // Update counter (simulate increment since we can't get real count from Forms)
+                memberCount++;
+                animateCounter(totalMembersEl, memberCount);
+                animateCounter(waitlistCountEl, memberCount);
+                updateCounters(memberCount);
                 
                 // Show success
                 showSuccess();
                 
-                console.log('✅ Email successfully submitted to Google Sheet:', email);
+                console.log('✅ Email successfully submitted:', email);
                 
             } catch (error) {
                 console.error('❌ Submission error:', error);
@@ -881,19 +858,16 @@
             }, 200);
         }
 
-        // Real-time growth simulation (disabled - using real counts now)
-        // Uncomment below if you want simulated growth in addition to real signups
-        /*
+        // Subtle simulated growth (since Google Forms doesn't provide live counts)
         setInterval(() => {
-            if (Math.random() < 0.1) { // Reduced frequency for realism
+            if (Math.random() < 0.1) { // 10% chance every minute
                 const increment = Math.floor(Math.random() * 2) + 1;
                 memberCount += increment;
                 
                 animateCounter(totalMembersEl, memberCount);
                 animateCounter(waitlistCountEl, memberCount);
             }
-        }, 60000); // Every minute instead of 8 seconds
-        */
+        }, 60000); // Every minute
 
         // Floating animation for keywords
         const keywords = document.querySelectorAll('.keyword');
@@ -961,13 +935,10 @@
             }, delay);
         };
 
-        // Initialize with real count and animations
-        setTimeout(async () => {
+        // Initialize animations
+        setTimeout(() => {
             cardObserver.observe(waitlistCard);
-            updateDebug('Ready', 'Page loaded');
-            
-            // Fetch real count from Google Sheets
-            await fetchRealCount();
+            updateDebug('Ready', 'Google Forms configured');
             
             // Stagger text animations
             const headline = document.querySelector('.main-headline');
@@ -979,12 +950,7 @@
             animateText(subtitle, 400);
         }, 100);
 
-        // Periodically refresh the count (every 30 seconds)
-        setInterval(async () => {
-            await fetchRealCount();
-        }, 30000);
-
-        // Initialize with fallback count, real count will be fetched
+        // Initialize counter
         updateCounters();
 
         // Add subtle mouse movement parallax

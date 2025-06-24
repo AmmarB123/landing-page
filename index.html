@@ -649,8 +649,8 @@
     </div>
 
     <script>
-        // Configuration - Your Google Apps Script
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgVdfK_rSvrvqAp25NLeJJkebEu8aMBD2FaTzBb4pPQyDsmKGR6LN_CgdDWNXsTxoC/exec';
+        // Configuration - Your UPDATED Google Apps Script with real count support
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSI2Rbv2Yy2mu7_Ms-a1qHyaOypoV3HkqmTRKDchmWC1lGa5or5CcN4-WB4B8nOmNt/exec';
         
         // Get form elements
         const form = document.getElementById('waitlistForm');
@@ -745,15 +745,36 @@
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: formData,
-                    mode: 'no-cors' // Important for Google Apps Script
+                    mode: 'cors'
                 });
                 
                 console.log('📨 Response received from Google Apps Script');
-                updateDebug('Success', 'Data sent to Google Sheet');
                 
-                // Update counter
-                memberCount++;
-                updateCounters();
+                // Try to parse the response for the real count
+                let realCount = null;
+                try {
+                    const responseData = await response.json();
+                    if (responseData.success && responseData.count !== undefined) {
+                        realCount = responseData.count;
+                        console.log('📊 Real count from server:', realCount);
+                    }
+                } catch (parseError) {
+                    console.log('⚠️ Could not parse response, using fallback increment');
+                }
+                
+                // Update counter with real count or increment locally
+                if (realCount !== null) {
+                    animateCounter(totalMembersEl, realCount);
+                    animateCounter(waitlistCountEl, realCount);
+                    updateCounters(realCount);
+                    updateDebug('Success', `Real count updated: ${realCount}`);
+                } else {
+                    memberCount++;
+                    animateCounter(totalMembersEl, memberCount);
+                    animateCounter(waitlistCountEl, memberCount);
+                    updateCounters(memberCount);
+                    updateDebug('Success', 'Count incremented locally');
+                }
                 
                 // Show success
                 showSuccess();
@@ -796,12 +817,13 @@
             }
         });
 
-        // Counter management
-        let memberCount = 2847;
+        // Counter management with real Google Sheets data
+        let memberCount = 2847; // Fallback count
         const totalMembersEl = document.getElementById('totalMembers');
         const waitlistCountEl = document.getElementById('waitlistCount');
 
-        function updateCounters() {
+        function updateCounters(count = memberCount) {
+            memberCount = count;
             totalMembersEl.textContent = memberCount.toLocaleString();
             waitlistCountEl.textContent = memberCount.toLocaleString();
         }
@@ -819,16 +841,59 @@
             }, 200);
         }
 
-        // Simulate real-time growth
+        // Get real count from Google Sheets
+        async function fetchRealCount() {
+            try {
+                console.log('📊 Fetching real count from Google Sheets...');
+                updateDebug('Loading...', 'Fetching real count');
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getCount', {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.count !== undefined) {
+                        console.log('✅ Real count fetched:', data.count);
+                        updateCounters(data.count);
+                        updateDebug('Ready', `Real count: ${data.count}`);
+                        return data.count;
+                    }
+                }
+            } catch (error) {
+                console.log('⚠️ Could not fetch real count, using fallback');
+                updateDebug('Warning', 'Using fallback count');
+            }
+            return memberCount;
+        }
+
+        function animateCounter(element, newValue) {
+            element.style.transform = 'scale(1.1)';
+            element.style.color = '#FF1493';
+            element.style.textShadow = '0 0 20px rgba(255, 20, 147, 0.6)';
+            
+            setTimeout(() => {
+                element.textContent = newValue.toLocaleString();
+                element.style.transform = 'scale(1)';
+                element.style.color = '#8A2BE2';
+                element.style.textShadow = 'none';
+            }, 200);
+        }
+
+        // Real-time growth simulation (disabled - using real counts now)
+        // Uncomment below if you want simulated growth in addition to real signups
+        /*
         setInterval(() => {
-            if (Math.random() < 0.3) {
+            if (Math.random() < 0.1) { // Reduced frequency for realism
                 const increment = Math.floor(Math.random() * 2) + 1;
                 memberCount += increment;
                 
                 animateCounter(totalMembersEl, memberCount);
                 animateCounter(waitlistCountEl, memberCount);
             }
-        }, 8000);
+        }, 60000); // Every minute instead of 8 seconds
+        */
 
         // Floating animation for keywords
         const keywords = document.querySelectorAll('.keyword');
@@ -896,10 +961,13 @@
             }, delay);
         };
 
-        // Initialize animations
-        setTimeout(() => {
+        // Initialize with real count and animations
+        setTimeout(async () => {
             cardObserver.observe(waitlistCard);
             updateDebug('Ready', 'Page loaded');
+            
+            // Fetch real count from Google Sheets
+            await fetchRealCount();
             
             // Stagger text animations
             const headline = document.querySelector('.main-headline');
@@ -911,7 +979,12 @@
             animateText(subtitle, 400);
         }, 100);
 
-        // Initialize
+        // Periodically refresh the count (every 30 seconds)
+        setInterval(async () => {
+            await fetchRealCount();
+        }, 30000);
+
+        // Initialize with fallback count, real count will be fetched
         updateCounters();
 
         // Add subtle mouse movement parallax

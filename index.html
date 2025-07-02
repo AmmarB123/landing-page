@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL CLOSET - Your AI Style Revolution</title>
+    <title>Digital Closet - Your Wardrobe, Digitally Organized</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -18,18 +18,17 @@
             color: #ffffff;
             overflow-x: hidden;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        /* Animated Background */
+        /* Subtle Background Effects */
         .hero-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #16213e  70%, #0a0a0f 100%);
-            z-index: -3;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #16213e 70%, #0a0a0f 100%);
+            z-index: -2;
         }
 
         .floating-particles {
@@ -38,76 +37,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
+            z-index: -1;
             overflow: hidden;
+            opacity: 0.3;
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 2px;
+            height: 2px;
             background: linear-gradient(45deg, #8A2BE2, #FF1493);
             border-radius: 50%;
-            animation: float-particle 20s infinite linear;
-            opacity: 0.6;
+            animation: float-particle 25s infinite linear;
         }
 
         @keyframes float-particle {
             0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+                transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
             100% {
-                transform: translateY(-10vh) translateX(100px) rotate(360deg);
+                transform: translateY(-10vh) translateX(50px);
                 opacity: 0;
             }
-        }
-
-        .geometric-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            animation: rotate-shape 20s infinite linear;
-        }
-
-        .shape.circle {
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-        }
-
-        .shape.square {
-            width: 150px;
-            height: 150px;
-            transform-origin: center;
-        }
-
-        @keyframes rotate-shape {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
-        /* Main Container */
-        .container {
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
         }
 
         /* Navigation */
@@ -116,10 +70,10 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 20px 40px;
+            padding: 15px 0;
             backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.8);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            background: rgba(10, 10, 15, 0.9);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
             z-index: 100;
             transition: all 0.3s ease;
         }
@@ -128,13 +82,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .logo-icon::before {
+            content: 'DC';
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             background: linear-gradient(135deg, #8A2BE2, #FF1493);
             background-clip: text;
@@ -148,7 +128,7 @@
         }
 
         .nav-link {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -159,19 +139,20 @@
             color: #8A2BE2;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #8A2BE2, #FF1493);
-            transition: width 0.3s ease;
+        .nav-cta {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
         }
 
         /* Hero Section */
@@ -180,65 +161,51 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 40px 80px;
-            position: relative;
+            padding: 120px 20px 80px;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 1400px;
+            max-width: 900px;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-left {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             padding: 8px 20px;
             background: rgba(138, 43, 226, 0.1);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 50px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 25px;
             font-size: 0.9rem;
             color: #8A2BE2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             font-weight: 600;
             margin-bottom: 30px;
-            animation: pulse-glow 3s ease-in-out infinite;
+            animation: pulse-glow 4s ease-in-out infinite;
         }
 
         @keyframes pulse-glow {
             0%, 100% { 
-                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.3);
-                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.2);
             }
             50% { 
-                box-shadow: 0 0 0 10px rgba(138, 43, 226, 0);
-                transform: scale(1.05);
+                box-shadow: 0 0 0 8px rgba(138, 43, 226, 0);
             }
         }
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 800;
-            line-height: 0.9;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #ffffff 0%, #8A2BE2 40%, #FF1493 80%, #20B2AA 100%);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #8A2BE2 40%, #FF1493 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradient-flow 4s ease-in-out infinite;
+            background-size: 200% 200%;
+            animation: gradient-flow 3s ease-in-out infinite;
         }
 
         @keyframes gradient-flow {
@@ -246,14 +213,8 @@
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 40px;
             line-height: 1.6;
@@ -262,108 +223,110 @@
             margin-right: auto;
         }
 
-        .hero-features {
+        .hero-form {
+            max-width: 500px;
+            margin: 0 auto 30px;
             display: flex;
-            flex-wrap: wrap;
             gap: 15px;
-            margin-bottom: 50px;
+            flex-wrap: wrap;
             justify-content: center;
         }
 
-        .feature-pill {
-            padding: 10px 20px;
+        .hero-email {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: 2px solid rgba(138, 43, 226, 0.2);
+            border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
+            color: white;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            cursor: pointer;
+            outline: none;
         }
 
-        .feature-pill:hover {
-            background: rgba(138, 43, 226, 0.2);
+        .hero-email::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-email:focus {
             border-color: #8A2BE2;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cta-primary {
-            padding: 18px 40px;
+        .hero-button {
+            padding: 15px 30px;
             background: linear-gradient(135deg, #8A2BE2, #FF1493);
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cta-primary:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
-        }
-
-        .cta-secondary {
-            padding: 18px 30px;
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            color: white;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
         }
 
-        .cta-secondary:hover {
-            border-color: #8A2BE2;
-            background: rgba(138, 43, 226, 0.1);
-            transform: translateY(-2px);
+        .hero-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3);
         }
 
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            flex-wrap: wrap;
+        }
 
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
+        .check-icon {
+            width: 16px;
+            height: 16px;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
 
+        .member-count {
+            color: #8A2BE2;
+            font-weight: 600;
+        }
 
         /* Features Section */
         .features {
-            padding: 100px 40px;
-            position: relative;
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .features-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .features-header {
+        .section-header {
             text-align: center;
             margin-bottom: 80px;
         }
 
-        .features-title {
+        .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             background: linear-gradient(135deg, #ffffff, #8A2BE2);
             background-clip: text;
@@ -372,8 +335,8 @@
             margin-bottom: 20px;
         }
 
-        .features-subtitle {
-            font-size: 1.2rem;
+        .section-subtitle {
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.7);
             max-width: 600px;
             margin: 0 auto;
@@ -382,99 +345,192 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 30px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #8A2BE2, #FF1493, #20B2AA);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: translateX(0);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: #8A2BE2;
-            box-shadow: 0 25px 50px rgba(138, 43, 226, 0.2);
+            transform: translateY(-5px);
+            border-color: rgba(138, 43, 226, 0.3);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.1);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #8A2BE2, #FF1493);
-            border-radius: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
         }
 
         .feature-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .feature-description {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
-            margin-bottom: 20px;
         }
 
-        .feature-demo {
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            font-family: 'Monaco', monospace;
-            font-size: 0.8rem;
-            color: #20B2AA;
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(255, 20, 147, 0.02));
         }
 
-        /* Waitlist Section */
-        .waitlist {
-            padding: 100px 40px;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.05));
-            position: relative;
-        }
-
-        .waitlist-container {
-            max-width: 800px;
+        .steps-container {
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
             text-align: center;
         }
 
-        .waitlist-title {
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.1);
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 1rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.05));
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-icon {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             background: linear-gradient(135deg, #ffffff, #8A2BE2);
             background-clip: text;
@@ -483,146 +539,134 @@
             margin-bottom: 20px;
         }
 
-        .waitlist-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 50px;
-        }
-
-        .waitlist-form {
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .email-input {
-            width: 100%;
-            padding: 20px 25px;
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            border-radius: 50px;
+        .cta-subtitle {
             font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-perks {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(138, 43, 226, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
             color: white;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            outline: none;
+            font-weight: 600;
             margin-bottom: 20px;
         }
 
-        .email-input::placeholder {
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #8A2BE2;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
         }
 
-        .email-input:focus {
-            border-color: #8A2BE2;
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #8A2BE2, #FF1493);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
-        }
-
-        .waitlist-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 50px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #8A2BE2, #FF1493);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
-            .hero-cta {
-                justify-content: center;
-            }
-            
-            .waitlist-stats {
-                gap: 40px;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .nav {
-                padding: 15px 20px;
-            }
-            
-            .hero {
-                padding: 100px 20px 60px;
-            }
-            
-            .features, .waitlist {
-                padding: 60px 20px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .waitlist-stats {
+            .hero-form {
                 flex-direction: column;
-                gap: 30px;
+                align-items: center;
+            }
+
+            .hero-email {
+                min-width: 100%;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            .cta-perks {
+                flex-direction: column;
+                gap: 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .hero-cta {
-                flex-direction: column;
-                width: 100%;
+            .hero {
+                padding: 100px 15px 60px;
             }
-            
-            .cta-primary, .cta-secondary {
-                width: 100%;
-                text-align: center;
+
+            .features,
+            .how-it-works,
+            .social-proof,
+            .final-cta {
+                padding: 60px 15px;
             }
-            
-            .feature-card {
-                padding: 30px 20px;
+
+            .feature-card,
+            .testimonial {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -630,267 +674,364 @@
 <body>
     <div class="hero-background"></div>
     <div class="floating-particles" id="particles"></div>
-    <div class="geometric-shapes" id="shapes"></div>
 
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <div class="logo">Digital Closet</div>
+            <div class="logo">
+                <div class="logo-text">Digital Closet</div>
+            </div>
             <div class="nav-links">
                 <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#waitlist" class="nav-link">Early Access</a>
             </div>
+            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-left">
-                    <div class="hero-badge">
-                        <span>🚀</span> AI-Powered Fashion Revolution
-                    </div>
-                    
-                    <h1 class="hero-title">
-                        Your Style,<br>
-                        Perfected by AI
-                    </h1>
-                    
-                    <p class="hero-subtitle">
-                        Discover the future of fashion with our AI stylist that knows your wardrobe better than you do. Smart shopping, perfect outfits, zero waste.
-                    </p>
-                    
-                    <div class="hero-features">
-                        <div class="feature-pill">🧠 AI Stylist</div>
-                        <div class="feature-pill">🛒 Smart Shopping</div>
-                        <div class="feature-pill">👗 Know What You Own</div>
-                        <div class="feature-pill">♻️ Sustainable Fashion</div>
-                        <div class="feature-pill">📱 Mobile First</div>
-                    </div>
-                    
-                    <div class="hero-cta">
-                        <button onclick="document.querySelector('#waitlist').scrollIntoView({behavior: 'smooth'})" class="cta-primary">
-                            Get Early Access <span>→</span>
-                        </button>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>✨</span> Coming Soon - Join the Waitlist
+            </div>
+            
+            <h1 class="hero-title">
+                Your Wardrobe,<br>
+                Digitally Organized
+            </h1>
+            
+            <p class="hero-subtitle">
+                Transform how you manage your style. Catalog your clothes, plan outfits, and never wonder "what to wear" again. Your personal stylist in your pocket.
+            </p>
+            
+            <form class="hero-form" id="heroForm">
+                <input 
+                    type="email" 
+                    class="hero-email" 
+                    placeholder="Enter your email address"
+                    required
+                >
+                <button type="submit" class="hero-button">
+                    Get Early Access <span>→</span>
+                </button>
+            </form>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    🎉 Join <span class="member-count" id="memberCount">2,847</span>+ fashion lovers on the waitlist
                 </div>
             </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features" id="features">
-            <div class="features-container">
-                <div class="features-header">
-                    <h2 class="features-title">Revolutionary Features</h2>
-                    <p class="features-subtitle">
-                        Experience the next generation of wardrobe management with cutting-edge AI technology
-                    </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    Free forever plan available
                 </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3 class="feature-title">AI Personal Stylist</h3>
-                        <p class="feature-description">
-                            Your personal AI stylist learns your preferences, body type, and lifestyle to create perfect outfits that make you feel confident every day.
-                        </p>
-                        <div class="feature-demo">
-                            > Analyzing style preferences...<br>
-                            > Generating outfit combinations...<br>
-                            > ✓ 47 new looks created for you
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">🛒</div>
-                        <h3 class="feature-title">Smart Shopping Assistant</h3>
-                        <p class="feature-description">
-                            Never buy the wrong size or duplicate items again. Our AI knows your exact measurements and existing wardrobe to recommend perfect purchases.
-                        </p>
-                        <div class="feature-demo">
-                            > Checking wardrobe for similar items...<br>
-                            > Validating size compatibility...<br>
-                            > ✓ Perfect match found!
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">👗</div>
-                        <h3 class="feature-title">Digital Wardrobe Mapping</h3>
-                        <p class="feature-description">
-                            Instantly catalog your entire wardrobe with our advanced image recognition. Know exactly what you own and how to style it.
-                        </p>
-                        <div class="feature-demo">
-                            > Scanning closet items...<br>
-                            > Identifying brands & colors...<br>
-                            > ✓ 127 items cataloged
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">♻️</div>
-                        <h3 class="feature-title">Sustainable Fashion Insights</h3>
-                        <p class="feature-description">
-                            Reduce fashion waste with intelligent outfit recycling and sustainable shopping recommendations based on your actual needs.
-                        </p>
-                        <div class="feature-demo">
-                            > Calculating outfit combinations...<br>
-                            > Identifying unused items...<br>
-                            > ✓ 23% wardrobe optimization achieved
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title">Style Analytics Dashboard</h3>
-                        <p class="feature-description">
-                            Track your style evolution, outfit performance, and wardrobe ROI with detailed analytics and personalized insights.
-                        </p>
-                        <div class="feature-demo">
-                            > Most worn item: Blue Jeans (47x)<br>
-                            > Style confidence: +34% this month<br>
-                            > ✓ Fashion goals achieved
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">🌈</div>
-                        <h3 class="feature-title">Mood-Based Styling</h3>
-                        <p class="feature-description">
-                            Tell us how you're feeling or what your day looks like, and we'll craft the perfect outfit to match your mood and activities.
-                        </p>
-                        <div class="feature-demo">
-                            > Mood: Confident & Professional<br>
-                            > Event: Important presentation<br>
-                            > ✓ Power outfit assembled
-                        </div>
-                    </div>
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    Early access perks
+                </div>
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    No spam, ever
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Waitlist Section -->
-        <section class="waitlist" id="waitlist">
-            <div class="waitlist-container">
-                <h2 class="waitlist-title">Join the Fashion Revolution</h2>
-                <p class="waitlist-subtitle">
-                    Be among the first to experience the future of fashion. Get exclusive early access and special perks.
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Everything you need to master your style</h2>
+                <p class="section-subtitle">
+                    Powerful features designed to revolutionize how you interact with your wardrobe.
                 </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3 class="feature-title">Smart Cataloging</h3>
+                    <p class="feature-description">
+                        Snap photos of your clothes and let AI automatically categorize, tag, and organize your entire wardrobe.
+                    </p>
+                </div>
                 
-                <form class="waitlist-form" id="waitlistForm">
-                    <input 
-                        type="email" 
-                        class="email-input" 
-                        placeholder="Enter your email for early access"
-                        required
-                    >
-                    <button type="submit" class="submit-btn">
-                        Secure My Early Access
-                    </button>
-                </form>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Outfit Planning</h3>
+                    <p class="feature-description">
+                        Create and save outfit combinations. Get suggestions based on weather, occasion, and your personal style.
+                    </p>
+                </div>
                 
-                <div class="waitlist-stats">
-                    <div class="stat">
-                        <span class="stat-number" id="memberCount">2,847</span>
-                        <span class="stat-label">Fashion Enthusiasts</span>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3 class="feature-title">Wear Tracking</h3>
+                    <p class="feature-description">
+                        Track what you wear and when. Discover your most and least worn items to optimize your wardrobe.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Style Analytics</h3>
+                    <p class="feature-description">
+                        Get insights into your style patterns, spending habits, and wardrobe gaps with detailed analytics.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Mobile First</h3>
+                    <p class="feature-description">
+                        Designed for your phone. Quick outfit checks, easy cataloging, and instant style inspiration on the go.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Style Community</h3>
+                    <p class="feature-description">
+                        Share outfits, get feedback, and discover new style inspiration from a community of fashion enthusiasts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="steps-container">
+            <div class="section-header">
+                <h2 class="section-title">How Digital Closet Works</h2>
+                <p class="section-subtitle">Get organized in three simple steps</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Capture Your Closet</h3>
+                    <p class="step-description">
+                        Take photos of your clothes or upload existing images. Our AI will automatically categorize everything.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Plan & Organize</h3>
+                    <p class="step-description">
+                        Create outfits, set style goals, and let our smart suggestions help you make the most of what you own.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Style with Confidence</h3>
+                    <p class="step-description">
+                        Never have a "nothing to wear" moment again. Get daily outfit suggestions and track your style evolution.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Join thousands of style enthusiasts</h2>
+                <p class="section-subtitle">See what early users are saying about Digital Closet</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">Style Possibilities</span>
+                    <p class="testimonial-text">
+                        "I can't wait for this app! The concept is exactly what I've been looking for. Finally, a way to see all my clothes in one place and actually use everything I own."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Fashion Blogger</p>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">AI Styling</span>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "As someone with a huge closet but always feeling like I have nothing to wear, this is going to be a game-changer. The outfit planning feature sounds amazing!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="avatar">JL</div>
+                        <div class="author-info">
+                            <h4>Jessica L.</h4>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "The beta preview looks incredible! I love how clean and intuitive the interface is. This will definitely help me be more intentional with my style choices."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="avatar">MP</div>
+                        <div class="author-info">
+                            <h4>Maya P.</h4>
+                            <p>UX Designer</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="waitlist">
+        <div class="cta-container">
+            <div class="cta-icon">✨</div>
+            <h2 class="cta-title">
+                Be among the first to experience Digital Closet
+            </h2>
+            <p class="cta-subtitle">
+                Join our exclusive waitlist and get early access, special perks, and be part of shaping the future of digital fashion.
+            </p>
+            
+            <form class="cta-form" id="waitlistForm">
+                <input 
+                    type="email" 
+                    class="hero-email" 
+                    placeholder="Your email address"
+                    required
+                >
+                <button type="submit" class="hero-button">
+                    Join Waitlist <span>⚡</span>
+                </button>
+            </form>
+            
+            <div class="cta-perks">
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    Early access to beta
+                </div>
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    Exclusive launch perks
+                </div>
+                <div class="stat-item">
+                    <div class="check-icon">✓</div>
+                    Shape product development
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Digital Closet</div>
+                </div>
+                <p>
+                    Revolutionizing how you organize, plan, and enjoy your personal style. Your wardrobe, digitally perfected.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Product</h3>
+                <a href="#features">Features</a><br>
+                <a href="#how-it-works">How It Works</a><br>
+                <a href="#waitlist">Early Access</a><br>
+                <a href="#">FAQ</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="#">Instagram</a><br>
+                <a href="#">TikTok</a><br>
+                <a href="#">Pinterest</a><br>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="#">Privacy Policy</a><br>
+                <a href="#">Terms of Service</a><br>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Digital Closet. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // Create floating particles
+        // Create subtle floating particles
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
                 container.appendChild(particle);
             }
         }
 
-        // Create geometric shapes
-        function createShapes() {
-            const container = document.getElementById('shapes');
-            const shapes = ['circle', 'square'];
-            
-            for (let i = 0; i < 8; i++) {
-                const shape = document.createElement('div');
-                shape.className = `shape ${shapes[Math.floor(Math.random() * shapes.length)]}`;
-                shape.style.left = Math.random() * 100 + '%';
-                shape.style.top = Math.random() * 100 + '%';
-                shape.style.animationDelay = Math.random() * 20 + 's';
-                shape.style.opacity = Math.random() * 0.3 + 0.1;
-                container.appendChild(shape);
+        // Form submission with Google Forms integration
+        async function submitToGoogleForms(email) {
+            try {
+                const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdCI-G9aWJnx45YpgtjBz2T82CHv9Q0-_pW3sZLi9ahFdBXrQ/formResponse';
+                const EMAIL_FIELD_NAME = 'entry.763118770';
+                
+                const formData = new FormData();
+                formData.append(EMAIL_FIELD_NAME, email);
+                
+                await fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                
+                return true;
+            } catch (error) {
+                console.error('Submission error:', error);
+                return false;
             }
         }
 
-        // Smooth scrolling for navigation links - Fixed
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle all anchor links that start with #
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const targetId = this.getAttribute('href');
-                    const target = document.querySelector(targetId);
-                    
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            createParticles();
-            createShapes();
-            
-            // Animate elements on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe feature cards
-            document.querySelectorAll('.feature-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = 'all 0.6s ease';
-                observer.observe(card);
-            });
-        });
-
-        // Form submission with Google Forms integration
-        document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const button = this.querySelector('.submit-btn');
-            const emailInput = this.querySelector('.email-input');
+        // Handle form submissions
+        function handleFormSubmit(form, button) {
+            const emailInput = form.querySelector('input[type="email"]');
             const email = emailInput.value.trim();
             const originalText = button.textContent;
             
@@ -910,78 +1051,139 @@
             button.style.background = 'linear-gradient(135deg, #059669, #10B981)';
             button.disabled = true;
             
-            try {
-                // Submit to Google Forms
-                const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdCI-G9aWJnx45YpgtjBz2T82CHv9Q0-_pW3sZLi9ahFdBXrQ/formResponse';
-                const EMAIL_FIELD_NAME = 'entry.763118770';
+            submitToGoogleForms(email).then(success => {
+                if (success) {
+                    button.textContent = '✓ Welcome!';
+                    
+                    // Increment counter
+                    const counter = document.getElementById('memberCount');
+                    if (counter) {
+                        const currentCount = parseInt(counter.textContent.replace(/,/g, ''));
+                        counter.textContent = (currentCount + 1).toLocaleString();
+                        
+                        // Counter animation
+                        counter.style.transform = 'scale(1.1)';
+                        counter.style.color = '#FF1493';
+                        setTimeout(() => {
+                            counter.style.transform = 'scale(1)';
+                            counter.style.color = '';
+                        }, 200);
+                    }
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        button.textContent = originalText;
+                        button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
+                        button.disabled = false;
+                    }, 3000);
+                } else {
+                    button.textContent = 'Try Again';
+                    button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
+                        button.disabled = false;
+                    }, 2000);
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                const formData = new FormData();
-                formData.append(EMAIL_FIELD_NAME, email);
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 
-                await fetch(GOOGLE_FORM_URL, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                });
-                
-                button.textContent = '✓ Welcome to the Revolution!';
-                
-                // Increment counter
-                const counter = document.getElementById('memberCount');
-                const currentCount = parseInt(counter.textContent.replace(',', ''));
-                counter.textContent = (currentCount + 1).toLocaleString();
-                
-                // Counter animation
-                counter.style.transform = 'scale(1.1)';
-                counter.style.color = '#FF1493';
-                setTimeout(() => {
-                    counter.style.transform = 'scale(1)';
-                    counter.style.color = '';
-                }, 200);
-                
-                // Reset form after delay
-                setTimeout(() => {
-                    this.reset();
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
-                    button.disabled = false;
-                }, 3000);
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                button.textContent = 'Try Again';
-                button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
-                    button.disabled = false;
-                }, 2000);
-            }
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Handle hero form
+            const heroForm = document.getElementById('heroForm');
+            if (heroForm) {
+                heroForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleFormSubmit(this, this.querySelector('button'));
+                });
+            }
+            
+            // Handle waitlist form
+            const waitlistForm = document.getElementById('waitlistForm');
+            if (waitlistForm) {
+                waitlistForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleFormSubmit(this, this.querySelector('button'));
+                });
+            }
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe cards for scroll animations
+            document.querySelectorAll('.feature-card, .testimonial, .step').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
 
-
-        // Initialize animations
-        // Moved to DOMContentLoaded above
+        // Add CSS for shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Dynamic counter animation
         setInterval(() => {
-            if (Math.random() < 0.1) {
+            if (Math.random() < 0.05) {
                 const counter = document.getElementById('memberCount');
-                const currentCount = parseInt(counter.textContent.replace(',', ''));
-                const newCount = currentCount + Math.floor(Math.random() * 3) + 1;
-                
-                counter.style.transform = 'scale(1.1)';
-                counter.style.color = '#FF1493';
-                
-                setTimeout(() => {
-                    counter.textContent = newCount.toLocaleString();
-                    counter.style.transform = 'scale(1)';
-                    counter.style.color = '';
-                }, 200);
+                if (counter) {
+                    const currentCount = parseInt(counter.textContent.replace(/,/g, ''));
+                    const newCount = currentCount + Math.floor(Math.random() * 2) + 1;
+                    
+                    counter.style.transform = 'scale(1.1)';
+                    counter.style.color = '#FF1493';
+                    
+                    setTimeout(() => {
+                        counter.textContent = newCount.toLocaleString();
+                        counter.style.transform = 'scale(1)';
+                        counter.style.color = '';
+                    }, 200);
+                }
             }
-        }, 30000);
+        }, 45000);
     </script>
 </body>
 </html>

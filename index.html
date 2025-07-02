@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL CLOSET - EXCLUSIVE ACCESS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>DIGITAL CLOSET - Your AI Style Revolution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,289 +14,236 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #1e293b;
+            background: #0a0a0f;
+            color: #ffffff;
             overflow-x: hidden;
             line-height: 1.6;
             min-height: 100vh;
         }
 
+        /* Animated Background */
         .hero-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
-            z-index: -2;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #16213e  70%, #0a0a0f 100%);
+            z-index: -3;
         }
 
-        .hero-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(32, 178, 170, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 60% 60%, rgba(255, 20, 147, 0.03) 0%, transparent 50%);
-            animation: gradientShift 12s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
-        }
-
-        .fabric-texture {
+        .floating-particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(138, 43, 226, 0.01) 2px, rgba(138, 43, 226, 0.01) 4px),
-                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(32, 178, 170, 0.005) 2px, rgba(32, 178, 170, 0.005) 4px);
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #8A2BE2, #FF1493);
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .geometric-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            animation: textureMove 20s linear infinite;
+            pointer-events: none;
         }
 
-        @keyframes textureMove {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(10px) translateY(10px); }
+        .shape {
+            position: absolute;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            animation: rotate-shape 20s infinite linear;
         }
 
+        .shape.circle {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .shape.square {
+            width: 150px;
+            height: 150px;
+            transform-origin: center;
+        }
+
+        @keyframes rotate-shape {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Main Container */
         .container {
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #8A2BE2;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8A2BE2, #FF1493);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 120px 40px 80px;
             position: relative;
         }
 
-        .main-content {
-            max-width: 1200px;
+        .hero-content {
+            max-width: 1400px;
             width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            min-height: 80vh;
-        }
-
-        .left-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        .brand-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 400;
-            color: #8A2BE2;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .brand-mark::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, #8A2BE2, transparent);
-        }
-
-        .main-headline {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 6vw, 6rem);
-            font-weight: 800;
-            line-height: 0.9;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #1e293b 0%, #8A2BE2 50%, #FF1493 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .fashion-subtitle {
-            font-size: 1.2rem;
-            color: #64748b;
-            margin-bottom: 40px;
-            font-weight: 400;
-            line-height: 1.6;
-            max-width: 400px;
-        }
-
-        .fashion-keywords {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-
-        .keyword {
-            padding: 8px 16px;
-            background: rgba(138, 43, 226, 0.1);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            border-radius: 25px;
-            font-size: 0.85rem;
-            color: #8A2BE2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .keyword:hover {
-            background: rgba(138, 43, 226, 0.15);
-            border-color: #8A2BE2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.2);
-        }
-
-        .right-section {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 1;
-        }
-
-        .waitlist-card {
-            width: 100%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(138, 43, 226, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.1);
-            transition: all 0.8s ease-out;
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .waitlist-card.animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .waitlist-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #8A2BE2, #FF1493, #20B2AA);
-            animation: topBorder 3s ease-in-out infinite;
-        }
-
-        @keyframes topBorder {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .waitlist-counter {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 30px;
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 50px;
             font-size: 0.9rem;
-            color: #64748b;
-            font-weight: 500;
+            color: #8A2BE2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: pulse-glow 3s ease-in-out infinite;
         }
 
-        .live-indicator {
-            width: 8px;
-            height: 8px;
-            background: #20B2AA;
-            border-radius: 50%;
-            margin-right: 10px;
-            animation: livePulse 2s infinite;
-        }
-
-        @keyframes livePulse {
+        @keyframes pulse-glow {
             0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.3);
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(32, 178, 170, 0.7);
             }
             50% { 
-                transform: scale(1.2);
-                box-shadow: 0 0 0 6px rgba(32, 178, 170, 0);
+                box-shadow: 0 0 0 10px rgba(138, 43, 226, 0);
+                transform: scale(1.05);
             }
         }
 
-        .counter-number {
-            color: #8A2BE2;
-            font-weight: 700;
-            margin: 0 5px;
-            font-size: 1rem;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #8A2BE2 40%, #FF1493 80%, #20B2AA 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradient-flow 4s ease-in-out infinite;
         }
 
-        /* Form Styles */
-        .waitlist-form {
-            width: 100%;
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .email-input {
-            width: 100%;
-            padding: 18px 20px;
-            border: 2px solid rgba(138, 43, 226, 0.2);
-            border-radius: 50px;
-            font-size: 1rem;
-            color: #1e293b;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .email-input:focus {
-            border-color: #8A2BE2;
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .email-input::placeholder {
-            color: #94a3b8;
-            font-weight: 400;
-        }
-
-        .email-input.error {
-            border-color: #ef4444;
-            animation: shake 0.5s ease-in-out;
+        @keyframes gradient-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         @keyframes shake {
@@ -305,31 +252,58 @@
             75% { transform: translateX(5px); }
         }
 
-        .error-message {
-            position: absolute;
-            bottom: -25px;
-            left: 20px;
-            color: #ef4444;
-            font-size: 0.8rem;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+        .feature-pill {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
-            opacity: 0;
-            transform: translateY(-10px);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .error-message.show {
-            opacity: 1;
-            transform: translateY(0);
+        .feature-pill:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: #8A2BE2;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
         }
 
-        .submit-button {
-            width: 100%;
-            padding: 18px;
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-primary {
+            padding: 18px 40px;
             background: linear-gradient(135deg, #8A2BE2, #FF1493);
             border: none;
             border-radius: 50px;
-            color: #ffffff;
-            font-size: 1rem;
+            color: white;
+            font-size: 1.1rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -337,103 +311,241 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
-            transform: scale(1);
-            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .submit-button::before {
+        .cta-primary:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .cta-secondary {
+            padding: 18px 30px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-secondary:hover {
+            border-color: #8A2BE2;
+            background: rgba(138, 43, 226, 0.1);
+            transform: translateY(-2px);
+        }
+
+
+
+
+
+        /* Features Section */
+        .features {
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #8A2BE2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .features-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8A2BE2, #FF1493, #20B2AA);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
-        .submit-button:hover:not(:disabled) {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
-            background: linear-gradient(135deg, #9333EA, #FF1493);
+        .feature-card:hover::before {
+            transform: translateX(0);
         }
 
-        .submit-button:hover:not(:disabled)::before {
-            left: 100%;
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #8A2BE2;
+            box-shadow: 0 25px 50px rgba(138, 43, 226, 0.2);
         }
 
-        .submit-button:active:not(:disabled) {
-            transform: scale(0.98) translateY(0px);
-            transition: all 0.1s ease;
-        }
-
-        .submit-button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: scale(1);
-        }
-
-        .submit-button.loading {
-            position: relative;
-            color: transparent;
-        }
-
-        .submit-button.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            color: #059669;
-            font-weight: 600;
-            padding: 15px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 15px;
-            margin-top: 15px;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-note {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-
-        .fashion-stats {
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border-radius: 20px;
             display: flex;
-            gap: 40px;
-            margin-top: 40px;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-demo {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            font-family: 'Monaco', monospace;
+            font-size: 0.8rem;
+            color: #20B2AA;
+        }
+
+        /* Waitlist Section */
+        .waitlist {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.05));
+            position: relative;
+        }
+
+        .waitlist-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .waitlist-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #8A2BE2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .waitlist-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 50px;
+        }
+
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 20px 25px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-input:focus {
+            border-color: #8A2BE2;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .waitlist-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
         }
 
         .stat {
@@ -442,490 +554,434 @@
 
         .stat-number {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #8A2BE2;
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
-            line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.8rem;
-            color: #64748b;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 5px;
-            font-weight: 500;
         }
 
-        /* Mobile Responsiveness */
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-                text-align: center;
+            .nav-links {
+                display: none;
             }
             
-            .fashion-subtitle {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .brand-mark::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .main-headline {
-                font-size: clamp(2.5rem, 8vw, 4rem);
-            }
-            
-            .fashion-stats {
+            .hero-cta {
                 justify-content: center;
-                margin-top: 30px;
+            }
+            
+            .waitlist-stats {
+                gap: 40px;
             }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 20px 15px;
+            .nav {
+                padding: 15px 20px;
             }
             
-            .main-content {
-                gap: 40px;
+            .hero {
+                padding: 100px 20px 60px;
             }
             
-            .waitlist-card {
-                padding: 30px 25px;
+            .features, .waitlist {
+                padding: 60px 20px;
             }
             
-            .fashion-keywords {
-                justify-content: center;
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
-            .fashion-stats {
-                gap: 25px;
-            }
-            
-            .stat-number {
-                font-size: 1.5rem;
+            .waitlist-stats {
+                flex-direction: column;
+                gap: 30px;
             }
         }
 
         @media (max-width: 480px) {
-            .main-headline {
-                font-size: 2.5rem;
-                line-height: 1;
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
             }
             
-            .fashion-subtitle {
-                font-size: 1.1rem;
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                text-align: center;
             }
             
-            .card-title {
-                font-size: 1.7rem;
-            }
-            
-            .email-input {
-                padding: 16px 18px;
-            }
-            
-            .submit-button {
-                padding: 16px;
+            .feature-card {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="hero-background"></div>
-    <div class="fabric-texture"></div>
-    
+    <div class="floating-particles" id="particles"></div>
+    <div class="geometric-shapes" id="shapes"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">Digital Closet</div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#waitlist" class="nav-link">Early Access</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="main-content">
-            <div class="left-section">
-                <div class="brand-mark">Digital Closet</div>
-                
-                <h1 class="main-headline">
-                    Your Style,<br>
-                    Curated by AI
-                </h1>
-                
-                <p class="fashion-subtitle">
-                    The most sophisticated wardrobe management platform. 
-                    Join fashion-forward individuals revolutionizing personal style.
-                </p>
-                
-                <div class="fashion-keywords">
-                    <span class="keyword">AI Styling</span>
-                    <span class="keyword">Smart Wardrobe</span>
-                    <span class="keyword">Trend Analysis</span>
-                    <span class="keyword">Personal Curation</span>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span>🚀</span> AI-Powered Fashion Revolution
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Your Style,<br>
+                        Perfected by AI
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Discover the future of fashion with our AI stylist that knows your wardrobe better than you do. Smart shopping, perfect outfits, zero waste.
+                    </p>
+                    
+                    <div class="hero-features">
+                        <div class="feature-pill">🧠 AI Stylist</div>
+                        <div class="feature-pill">🛒 Smart Shopping</div>
+                        <div class="feature-pill">👗 Know What You Own</div>
+                        <div class="feature-pill">♻️ Sustainable Fashion</div>
+                        <div class="feature-pill">📱 Mobile First</div>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <button onclick="document.querySelector('#waitlist').scrollIntoView({behavior: 'smooth'})" class="cta-primary">
+                            Get Early Access <span>→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="features-container">
+                <div class="features-header">
+                    <h2 class="features-title">Revolutionary Features</h2>
+                    <p class="features-subtitle">
+                        Experience the next generation of wardrobe management with cutting-edge AI technology
+                    </p>
                 </div>
                 
-                <div class="fashion-stats">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3 class="feature-title">AI Personal Stylist</h3>
+                        <p class="feature-description">
+                            Your personal AI stylist learns your preferences, body type, and lifestyle to create perfect outfits that make you feel confident every day.
+                        </p>
+                        <div class="feature-demo">
+                            > Analyzing style preferences...<br>
+                            > Generating outfit combinations...<br>
+                            > ✓ 47 new looks created for you
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🛒</div>
+                        <h3 class="feature-title">Smart Shopping Assistant</h3>
+                        <p class="feature-description">
+                            Never buy the wrong size or duplicate items again. Our AI knows your exact measurements and existing wardrobe to recommend perfect purchases.
+                        </p>
+                        <div class="feature-demo">
+                            > Checking wardrobe for similar items...<br>
+                            > Validating size compatibility...<br>
+                            > ✓ Perfect match found!
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">👗</div>
+                        <h3 class="feature-title">Digital Wardrobe Mapping</h3>
+                        <p class="feature-description">
+                            Instantly catalog your entire wardrobe with our advanced image recognition. Know exactly what you own and how to style it.
+                        </p>
+                        <div class="feature-demo">
+                            > Scanning closet items...<br>
+                            > Identifying brands & colors...<br>
+                            > ✓ 127 items cataloged
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <h3 class="feature-title">Sustainable Fashion Insights</h3>
+                        <p class="feature-description">
+                            Reduce fashion waste with intelligent outfit recycling and sustainable shopping recommendations based on your actual needs.
+                        </p>
+                        <div class="feature-demo">
+                            > Calculating outfit combinations...<br>
+                            > Identifying unused items...<br>
+                            > ✓ 23% wardrobe optimization achieved
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">Style Analytics Dashboard</h3>
+                        <p class="feature-description">
+                            Track your style evolution, outfit performance, and wardrobe ROI with detailed analytics and personalized insights.
+                        </p>
+                        <div class="feature-demo">
+                            > Most worn item: Blue Jeans (47x)<br>
+                            > Style confidence: +34% this month<br>
+                            > ✓ Fashion goals achieved
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌈</div>
+                        <h3 class="feature-title">Mood-Based Styling</h3>
+                        <p class="feature-description">
+                            Tell us how you're feeling or what your day looks like, and we'll craft the perfect outfit to match your mood and activities.
+                        </p>
+                        <div class="feature-demo">
+                            > Mood: Confident & Professional<br>
+                            > Event: Important presentation<br>
+                            > ✓ Power outfit assembled
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waitlist Section -->
+        <section class="waitlist" id="waitlist">
+            <div class="waitlist-container">
+                <h2 class="waitlist-title">Join the Fashion Revolution</h2>
+                <p class="waitlist-subtitle">
+                    Be among the first to experience the future of fashion. Get exclusive early access and special perks.
+                </p>
+                
+                <form class="waitlist-form" id="waitlistForm">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        placeholder="Enter your email for early access"
+                        required
+                    >
+                    <button type="submit" class="submit-btn">
+                        Secure My Early Access
+                    </button>
+                </form>
+                
+                <div class="waitlist-stats">
                     <div class="stat">
-                        <span class="stat-number" id="totalMembers">2,847</span>
-                        <span class="stat-label">Members</span>
+                        <span class="stat-number" id="memberCount">2,847</span>
+                        <span class="stat-label">Fashion Enthusiasts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Style Possibilities</span>
                     </div>
                     <div class="stat">
                         <span class="stat-number">24/7</span>
                         <span class="stat-label">AI Styling</span>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">Looks</span>
-                    </div>
                 </div>
             </div>
-            
-            <div class="right-section">
-                <div class="waitlist-card">
-                    <h2 class="card-title">Join the Waitlist</h2>
-                    
-                    <div class="waitlist-counter">
-                        <div class="live-indicator"></div>
-                        <span>
-                            <span class="counter-number" id="waitlistCount">2,847</span>
-                            style enthusiasts waiting
-                        </span>
-                    </div>
-                    
-                    <form class="waitlist-form" id="waitlistForm">
-                        <div class="form-group">
-                            <input 
-                                type="email" 
-                                class="email-input" 
-                                id="emailInput"
-                                placeholder="Enter your email address"
-                                required
-                                autocomplete="email"
-                            >
-                            <div class="error-message" id="errorMessage"></div>
-                        </div>
-                        
-                        <button type="submit" class="submit-button" id="submitButton">
-                            Secure Early Access
-                        </button>
-                        
-                        <div class="success-message" id="successMessage">
-                            🎉 Welcome to the waitlist! You'll be among the first to access Digital Closet.
-                        </div>
-                        
-                        <p class="form-note">
-                            Join our exclusive waitlist for early access.<br>
-                            No spam, just style updates and launch notifications.
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
 
     <script>
-        // Configuration - Your NEW Google Form (Updated!)
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdCI-G9aWJnx45YpgtjBz2T82CHv9Q0-_pW3sZLi9ahFdBXrQ/formResponse';
-        const EMAIL_FIELD_NAME = 'entry.763118770';
-        
-        // Get form elements
-        const form = document.getElementById('waitlistForm');
-        const emailInput = document.getElementById('emailInput');
-        const submitButton = document.getElementById('submitButton');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-
-        // Email validation
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                container.appendChild(particle);
+            }
         }
 
-        // Show error message
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.classList.add('show');
-            emailInput.classList.add('error');
+        // Create geometric shapes
+        function createShapes() {
+            const container = document.getElementById('shapes');
+            const shapes = ['circle', 'square'];
             
-            setTimeout(() => {
-                emailInput.classList.remove('error');
-            }, 500);
+            for (let i = 0; i < 8; i++) {
+                const shape = document.createElement('div');
+                shape.className = `shape ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.top = Math.random() * 100 + '%';
+                shape.style.animationDelay = Math.random() * 20 + 's';
+                shape.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(shape);
+            }
         }
 
-        // Hide error message
-        function hideError() {
-            errorMessage.classList.remove('show');
-            emailInput.classList.remove('error');
-        }
+        // Smooth scrolling for navigation links - Fixed
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle all anchor links that start with #
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            createParticles();
+            createShapes();
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
 
-        // Show success message
-        function showSuccess() {
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-        }
-
-        // Main form submission handler
-        form.addEventListener('submit', async (e) => {
+        // Form submission with Google Forms integration
+        document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            const button = this.querySelector('.submit-btn');
+            const emailInput = this.querySelector('.email-input');
             const email = emailInput.value.trim();
-            
-            console.log('🚀 Form submitted! Email:', email);
-            console.log('📡 Google Form URL:', GOOGLE_FORM_URL);
+            const originalText = button.textContent;
             
             // Validate email
-            if (!email) {
-                showError('Please enter your email address');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                emailInput.style.borderColor = '#ef4444';
+                emailInput.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    emailInput.style.borderColor = '';
+                    emailInput.style.animation = '';
+                }, 500);
                 return;
             }
             
-            if (!isValidEmail(email)) {
-                showError('Please enter a valid email address');
-                return;
-            }
-            
-            hideError();
-            
-            // Show loading state
-            submitButton.classList.add('loading');
-            submitButton.disabled = true;
+            button.textContent = 'Joining...';
+            button.style.background = 'linear-gradient(135deg, #059669, #10B981)';
+            button.disabled = true;
             
             try {
-                // Submit to Google Forms (much simpler!)
+                // Submit to Google Forms
+                const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdCI-G9aWJnx45YpgtjBz2T82CHv9Q0-_pW3sZLi9ahFdBXrQ/formResponse';
+                const EMAIL_FIELD_NAME = 'entry.763118770';
+                
                 const formData = new FormData();
                 formData.append(EMAIL_FIELD_NAME, email);
                 
-                console.log('📋 Sending to Google Forms:');
-                console.log('- Email:', email);
-                console.log('- Form URL:', GOOGLE_FORM_URL);
-                
-                // Submit to Google Forms
-                const response = await fetch(GOOGLE_FORM_URL, {
+                await fetch(GOOGLE_FORM_URL, {
                     method: 'POST',
                     body: formData,
-                    mode: 'no-cors' // Required for Google Forms
+                    mode: 'no-cors'
                 });
                 
-                console.log('📨 Submitted to Google Forms successfully!');
+                button.textContent = '✓ Welcome to the Revolution!';
                 
-                // Update counter (simulate increment since we can't get real count from Forms)
-                memberCount++;
-                animateCounter(totalMembersEl, memberCount);
-                animateCounter(waitlistCountEl, memberCount);
-                updateCounters(memberCount);
+                // Increment counter
+                const counter = document.getElementById('memberCount');
+                const currentCount = parseInt(counter.textContent.replace(',', ''));
+                counter.textContent = (currentCount + 1).toLocaleString();
                 
-                // Show success
-                showSuccess();
+                // Counter animation
+                counter.style.transform = 'scale(1.1)';
+                counter.style.color = '#FF1493';
+                setTimeout(() => {
+                    counter.style.transform = 'scale(1)';
+                    counter.style.color = '';
+                }, 200);
                 
-                console.log('✅ Email successfully submitted:', email);
+                // Reset form after delay
+                setTimeout(() => {
+                    this.reset();
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
+                    button.disabled = false;
+                }, 3000);
                 
             } catch (error) {
-                console.error('❌ Submission error:', error);
-                showError('Something went wrong. Please try again.');
-            } finally {
-                submitButton.classList.remove('loading');
-                submitButton.disabled = false;
-            }
-        });
-
-        // Clear error on input
-        emailInput.addEventListener('input', () => {
-            if (errorMessage.classList.contains('show')) {
-                hideError();
-            }
-        });
-
-        // Enhanced button interactions
-        submitButton.addEventListener('mousedown', () => {
-            if (!submitButton.disabled) {
-                submitButton.style.transform = 'scale(0.95) translateY(0px)';
-            }
-        });
-
-        submitButton.addEventListener('mouseup', () => {
-            if (!submitButton.disabled) {
-                submitButton.style.transform = 'scale(1.05) translateY(-2px)';
-            }
-        });
-
-        submitButton.addEventListener('mouseleave', () => {
-            if (!submitButton.disabled) {
-                submitButton.style.transform = 'scale(1) translateY(0px)';
-            }
-        });
-
-        // Counter management with real Google Sheets data
-        let memberCount = 2847; // Fallback count
-        const totalMembersEl = document.getElementById('totalMembers');
-        const waitlistCountEl = document.getElementById('waitlistCount');
-
-        function updateCounters(count = memberCount) {
-            memberCount = count;
-            totalMembersEl.textContent = memberCount.toLocaleString();
-            waitlistCountEl.textContent = memberCount.toLocaleString();
-        }
-
-        function animateCounter(element, newValue) {
-            element.style.transform = 'scale(1.1)';
-            element.style.color = '#FF1493';
-            element.style.textShadow = '0 0 20px rgba(255, 20, 147, 0.6)';
-            
-            setTimeout(() => {
-                element.textContent = newValue.toLocaleString();
-                element.style.transform = 'scale(1)';
-                element.style.color = '#8A2BE2';
-                element.style.textShadow = 'none';
-            }, 200);
-        }
-
-        // Get real count from Google Sheets
-        async function fetchRealCount() {
-            try {
-                console.log('📊 Fetching real count from Google Sheets...');
-                updateDebug('Loading...', 'Fetching real count');
-                
-                const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getCount', {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.success && data.count !== undefined) {
-                        console.log('✅ Real count fetched:', data.count);
-                        updateCounters(data.count);
-                        updateDebug('Ready', `Real count: ${data.count}`);
-                        return data.count;
-                    }
-                }
-            } catch (error) {
-                console.log('⚠️ Could not fetch real count, using fallback');
-                updateDebug('Warning', 'Using fallback count');
-            }
-            return memberCount;
-        }
-
-        function animateCounter(element, newValue) {
-            element.style.transform = 'scale(1.1)';
-            element.style.color = '#FF1493';
-            element.style.textShadow = '0 0 20px rgba(255, 20, 147, 0.6)';
-            
-            setTimeout(() => {
-                element.textContent = newValue.toLocaleString();
-                element.style.transform = 'scale(1)';
-                element.style.color = '#8A2BE2';
-                element.style.textShadow = 'none';
-            }, 200);
-        }
-
-        // Subtle simulated growth (since Google Forms doesn't provide live counts)
-        setInterval(() => {
-            if (Math.random() < 0.1) { // 10% chance every minute
-                const increment = Math.floor(Math.random() * 2) + 1;
-                memberCount += increment;
-                
-                animateCounter(totalMembersEl, memberCount);
-                animateCounter(waitlistCountEl, memberCount);
-            }
-        }, 60000); // Every minute
-
-        // Floating animation for keywords
-        const keywords = document.querySelectorAll('.keyword');
-        keywords.forEach((keyword, index) => {
-            keyword.style.animation = `float 6s ease-in-out infinite ${index * 0.5}s`;
-        });
-
-        // Add floating keyframe animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                33% { transform: translateY(-8px) rotate(1deg); }
-                66% { transform: translateY(-4px) rotate(-1deg); }
-            }
-            
-            @keyframes shimmerPulse {
-                0%, 100% { 
-                    background-position: 0% 50%;
-                    filter: brightness(1);
-                }
-                50% { 
-                    background-position: 100% 50%;
-                    filter: brightness(1.1);
-                }
-            }
-            
-            .main-headline {
-                animation: shimmerPulse 4s ease-in-out infinite;
-            }
-            
-            @keyframes subtleGlow {
-                0%, 100% { box-shadow: 0 15px 35px rgba(138, 43, 226, 0.1); }
-                50% { box-shadow: 0 20px 40px rgba(138, 43, 226, 0.15); }
-            }
-            
-            .waitlist-card {
-                animation: subtleGlow 8s ease-in-out infinite;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Animate waitlist card on scroll
-        const waitlistCard = document.querySelector('.waitlist-card');
-        const cardObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    waitlistCard.classList.add('animate-in');
-                    cardObserver.unobserve(waitlistCard);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        // Staggered text animations
-        const animateText = (element, delay = 0) => {
-            setTimeout(() => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                console.error('Submission error:', error);
+                button.textContent = 'Try Again';
+                button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
                 
                 setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, 100);
-            }, delay);
-        };
-
-        // Initialize animations
-        setTimeout(() => {
-            cardObserver.observe(waitlistCard);
-            
-            // Stagger text animations
-            const headline = document.querySelector('.main-headline');
-            const subtitle = document.querySelector('.fashion-subtitle');
-            const brandMark = document.querySelector('.brand-mark');
-            
-            animateText(brandMark, 0);
-            animateText(headline, 200);
-            animateText(subtitle, 400);
-        }, 100);
-
-        // Initialize counter
-        updateCounters();
-
-        // Add subtle mouse movement parallax
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            const background = document.querySelector('.hero-background');
-            const texture = document.querySelector('.fabric-texture');
-            
-            if (background) {
-                background.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
-            }
-            
-            if (texture) {
-                texture.style.transform = `translate(${mouseX * -5}px, ${mouseY * -5}px)`;
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #8A2BE2, #FF1493)';
+                    button.disabled = false;
+                }, 2000);
             }
         });
+
+
+
+        // Initialize animations
+        // Moved to DOMContentLoaded above
+
+        // Dynamic counter animation
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                const counter = document.getElementById('memberCount');
+                const currentCount = parseInt(counter.textContent.replace(',', ''));
+                const newCount = currentCount + Math.floor(Math.random() * 3) + 1;
+                
+                counter.style.transform = 'scale(1.1)';
+                counter.style.color = '#FF1493';
+                
+                setTimeout(() => {
+                    counter.textContent = newCount.toLocaleString();
+                    counter.style.transform = 'scale(1)';
+                    counter.style.color = '';
+                }, 200);
+            }
+        }, 30000);
     </script>
 </body>
 </html>
